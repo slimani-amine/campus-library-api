@@ -22,7 +22,6 @@ public class LoanService {
     private LoanRepository loans;
     private Clock clock;
 
-    /** Only for CDI: it needs a no-arg constructor to build the proxy of this bean. */
     protected LoanService() {
     }
 

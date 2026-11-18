@@ -7,10 +7,6 @@ import jakarta.interceptor.InvocationContext;
 
 import java.util.logging.Logger;
 
-/**
- * Logs the name of every method called on a {@link Logged} bean.
- * {@code @Priority} turns the interceptor on for the whole application (no beans.xml needed).
- */
 @Logged
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)

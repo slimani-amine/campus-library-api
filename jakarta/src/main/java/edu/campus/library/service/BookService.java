@@ -14,7 +14,6 @@ public class BookService {
 
     private BookRepository books;
 
-    /** Only for CDI: it needs a no-arg constructor to build the proxy of this bean. */
     protected BookService() {
     }
 

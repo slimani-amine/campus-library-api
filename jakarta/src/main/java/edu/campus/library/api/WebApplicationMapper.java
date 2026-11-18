@@ -6,11 +6,6 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
-/**
- * Errors raised by the REST runtime itself, before our code runs: unknown path or
- * non-numeric id (404), wrong method (405), wrong Content-Type (415), wrong Accept (406).
- * Same problem+json body as our own errors; the Allow header of a 405 is kept.
- */
 @Provider
 public class WebApplicationMapper implements ExceptionMapper<WebApplicationException> {
 

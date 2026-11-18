@@ -27,7 +27,6 @@ public class MemberResource {
 
     private MemberService service;
 
-    /** Only for CDI: it needs a no-arg constructor to build the proxy of this bean. */
     protected MemberResource() {
     }
 

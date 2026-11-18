@@ -12,13 +12,8 @@ import java.util.regex.Pattern;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Black-box tests: they talk HTTP to a running server, like any other client would.
- * Start the server first, then point api.base at it:
- *   WildFly from IntelliJ (context /library): mvn test -Dapi.base=http://localhost:8080/library
- *   Docker (ROOT.war, context /):             mvn test -Dapi.base=http://localhost:8080
- * Every test creates its own books and members, so the order does not matter.
- */
+// Needs a running server: mvn test -Dapi.base=http://localhost:8080/library (IntelliJ)
+// or -Dapi.base=http://localhost:8080 (Docker).
 class LibraryApiTest {
 
     private static final String BASE = System.getProperty("api.base", "http://localhost:8080");
@@ -113,8 +108,6 @@ class LibraryApiTest {
         assertTrue(response.body().matches("(?s).*\"returnedAt\"\\s*:\\s*\"[^\"]+\".*"), response.body());
         assertTrue(get("/api/books/" + bookId).body().matches("(?s).*\"available\"\\s*:\\s*true.*"));
     }
-
-    // ---- helpers ----
 
     private static long createBook(String title) throws Exception {
         HttpResponse<String> response = post("/api/books",

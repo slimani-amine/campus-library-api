@@ -5,7 +5,6 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
-/** Business rule broken (book already lent, member has 3 loans, loan already returned) → 409. */
 @Provider
 public class ConflictMapper implements ExceptionMapper<ConflictException> {
 

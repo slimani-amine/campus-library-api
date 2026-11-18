@@ -6,7 +6,6 @@ import jakarta.ws.rs.core.Response.StatusType;
 import java.util.List;
 import java.util.Map;
 
-/** The one place that builds problem+json responses, so all mappers look the same. */
 final class Problems {
 
     private static final Map<Integer, String> TYPES = Map.of(

@@ -94,3 +94,9 @@ build that proxy when the bean's `@Inject` constructor is private, even though t
 no-arg constructor is still there.
 
 Undo: made the `@Inject` constructor public again.
+
+## Back to green
+
+After undoing all three changes and redeploying (`Deployed "library"` at 21:07:19), the 8 tests
+pass again: `Tests run: 8, Failures: 0, Errors: 0, Skipped: 0` (full output in
+`docs/mvn-test-output.txt`).

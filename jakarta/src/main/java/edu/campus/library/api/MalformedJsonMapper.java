@@ -5,7 +5,6 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
-/** A body that JSON-B cannot read (broken JSON, a string where a number belongs) → 400. */
 @Provider
 public class MalformedJsonMapper implements ExceptionMapper<ProcessingException> {
 

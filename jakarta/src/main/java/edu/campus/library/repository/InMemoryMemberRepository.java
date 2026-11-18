@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-/** Keeps members in memory. One instance for the whole application (@ApplicationScoped). */
 @ApplicationScoped
 public class InMemoryMemberRepository implements MemberRepository {
 
