@@ -1,0 +1,27 @@
+package edu.campus.library.service;
+
+import jakarta.annotation.Priority;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptor;
+import jakarta.interceptor.InvocationContext;
+
+import java.util.logging.Logger;
+
+/**
+ * Logs the name of every method called on a {@link Logged} bean.
+ * {@code @Priority} turns the interceptor on for the whole application (no beans.xml needed).
+ */
+@Logged
+@Interceptor
+@Priority(Interceptor.Priority.APPLICATION)
+public class LoggedInterceptor {
+
+    private static final Logger LOG = Logger.getLogger(LoggedInterceptor.class.getName());
+
+    @AroundInvoke
+    public Object log(InvocationContext context) throws Exception {
+        LOG.info("-> " + context.getMethod().getDeclaringClass().getSimpleName()
+                + "." + context.getMethod().getName());
+        return context.proceed();
+    }
+}
