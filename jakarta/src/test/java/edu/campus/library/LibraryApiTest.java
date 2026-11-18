@@ -14,8 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Black-box tests: they talk HTTP to a running server, like any other client would.
- * Start the server first (docker compose up -d --build library-jakarta), then run
- * mvn test -Dapi.base=http://localhost:8080
+ * Start the server first, then point api.base at it:
+ *   WildFly from IntelliJ (context /library): mvn test -Dapi.base=http://localhost:8080/library
+ *   Docker (ROOT.war, context /):             mvn test -Dapi.base=http://localhost:8080
  * Every test creates its own books and members, so the order does not matter.
  */
 class LibraryApiTest {

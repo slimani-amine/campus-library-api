@@ -1,5 +1,6 @@
 ### Manual calls for the Library API (IntelliJ HTTP Client).
-@base = http://localhost:8080/api
+# WildFly from IntelliJ deploys at /library. With Docker (ROOT.war) use http://localhost:8080/api
+@base = http://localhost:8080/library/api
 
 ### List books
 GET {{base}}/books

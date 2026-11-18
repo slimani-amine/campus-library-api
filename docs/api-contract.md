@@ -92,4 +92,5 @@ Validation failures (400) also carry an `errors` list, one entry per invalid fie
 ```
 
 The `message` text comes from the validation framework and may differ between
-implementations; the `field` names must match.
+implementations; the `field` names must match. A POST/PUT with no body at all is a
+400 with one error whose `field` is `body`.
