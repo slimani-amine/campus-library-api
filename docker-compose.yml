@@ -1,0 +1,5 @@
+services:
+  library-jakarta:
+    build: ./jakarta
+    ports:
+      - "8080:8080"

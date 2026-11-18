@@ -1,0 +1,47 @@
+### Manual calls for the Library API (IntelliJ HTTP Client).
+@base = http://localhost:8080/api
+
+### List books
+GET {{base}}/books
+
+### Get one book
+GET {{base}}/books/1
+
+### Create a book (201 + Location)
+POST {{base}}/books
+Content-Type: application/json
+
+{ "title": "Clean Code", "author": "Robert C. Martin", "isbn": "9780132350884" }
+
+### Create a book with a blank title (400, problem+json with errors)
+POST {{base}}/books
+Content-Type: application/json
+
+{ "title": " ", "author": "Nobody", "isbn": "123" }
+
+### Update a book
+PUT {{base}}/books/1
+Content-Type: application/json
+
+{ "title": "Clean Code (2nd ed.)", "author": "Robert C. Martin", "isbn": "9780132350884" }
+
+### Delete a book (204)
+DELETE {{base}}/books/1
+
+### List members
+GET {{base}}/members
+
+### Create a member
+POST {{base}}/members
+Content-Type: application/json
+
+{ "name": "Ada Lovelace", "email": "ada@campus.edu" }
+
+### Borrow a book (201)
+POST {{base}}/loans
+Content-Type: application/json
+
+{ "bookId": 1, "memberId": 1 }
+
+### Return a loan (200)
+POST {{base}}/loans/1/return
