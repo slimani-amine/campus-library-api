@@ -73,3 +73,24 @@ Meaning: with no `beans.xml`, CDI only discovers classes that carry a bean-defin
 `BookRepository`, the app is never deployed, and the GET returns WildFly's plain 404 page, not a list.
 
 Undo: restored `@ApplicationScoped` on `InMemoryBookRepository`.
+
+## 3. Private `@Inject` constructor in `BookService`
+
+Change: made `@Inject public BookService(BookRepository books)` private
+(the protected no-arg constructor was left as it is).
+
+Result: the deployment fails and is rolled back.
+
+```text
+2026-11-18 21:03:51,649 ERROR [org.jboss.msc.service.fail] (MSC service thread 1-5) MSC000001: Failed to start service jboss.deployment.unit."library.war".WeldStartService: org.jboss.msc.service.StartException in service jboss.deployment.unit."library.war".WeldStartService: Failed to start service
+[...]
+Caused by: org.jboss.weld.exceptions.DeploymentException: WELD-001436: Type edu.campus.library.service.BookService is not proxyable because it has a private constructor [EnhancedAnnotatedConstructorImpl] @Inject private edu.campus.library.service.BookService(BookRepository) - class edu.campus.library.service.BookService.
+[...]
+2026-11-18 21:03:51,652 ERROR [org.jboss.as.server] (management-handler-thread - 2) WFLYSRV0021: Deploy of deployment "library.war" was rolled back with the following failure message: 
+```
+
+Meaning: an `@ApplicationScoped` bean is reached through a proxy subclass, and Weld refuses to
+build that proxy when the bean's `@Inject` constructor is private, even though the protected
+no-arg constructor is still there.
+
+Undo: made the `@Inject` constructor public again.
