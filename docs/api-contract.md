@@ -93,4 +93,7 @@ Validation failures (400) also carry an `errors` list, one entry per invalid fie
 
 The `message` text comes from the validation framework and may differ between
 implementations; the `field` names must match. A POST/PUT with no body at all is a
-400 with one error whose `field` is `body`.
+400 with one error whose `field` is `body`. A body that is not valid JSON is a 400
+with no `errors` list. Errors raised before the request reaches a resource (unknown
+path or non-numeric id → 404, wrong method → 405, wrong `Content-Type` → 415) use the
+same problem details body.

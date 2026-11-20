@@ -1,7 +1,7 @@
 package edu.campus.library.api;
 
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.Status;
+import jakarta.ws.rs.core.Response.StatusType;
 
 import java.util.List;
 import java.util.Map;
@@ -12,16 +12,19 @@ final class Problems {
     private static final Map<Integer, String> TYPES = Map.of(
             400, "https://tools.ietf.org/html/rfc9110#section-15.5.1",
             404, "https://tools.ietf.org/html/rfc9110#section-15.5.5",
-            409, "https://tools.ietf.org/html/rfc9110#section-15.5.10");
+            405, "https://tools.ietf.org/html/rfc9110#section-15.5.6",
+            406, "https://tools.ietf.org/html/rfc9110#section-15.5.7",
+            409, "https://tools.ietf.org/html/rfc9110#section-15.5.10",
+            415, "https://tools.ietf.org/html/rfc9110#section-15.5.16");
 
     private Problems() {
     }
 
-    static Response response(Status status, String detail) {
+    static Response response(StatusType status, String detail) {
         return response(status, detail, null);
     }
 
-    static Response response(Status status, String detail, List<ProblemDetail.FieldError> errors) {
+    static Response response(StatusType status, String detail, List<ProblemDetail.FieldError> errors) {
         int code = status.getStatusCode();
         ProblemDetail body = new ProblemDetail(
                 TYPES.getOrDefault(code, "about:blank"), status.getReasonPhrase(), code, detail, errors);

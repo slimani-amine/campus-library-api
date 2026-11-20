@@ -20,6 +20,18 @@ Content-Type: application/json
 
 { "title": " ", "author": "Nobody", "isbn": "123" }
 
+### Broken JSON (400, problem+json)
+POST {{base}}/books
+Content-Type: application/json
+
+{ "title":
+
+### Wrong Content-Type (415, problem+json)
+POST {{base}}/books
+Content-Type: text/plain
+
+hello
+
 ### Update a book
 PUT {{base}}/books/1
 Content-Type: application/json
